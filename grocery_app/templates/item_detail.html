@@ -13,6 +13,14 @@
 
 <p><strong>This item was added by:</strong> {{ current_user.username }}</p>
 
+<form method="POST" action="{{ url_for('main.add_to_shopping_list', item_id=item.id) }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Add item to your shopping list!</legend>
+
+        {{ form.submit }}
+    </fieldset>
+</form>
 
 <h2>Edit Item</h2>
 
