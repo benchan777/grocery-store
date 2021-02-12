@@ -14,7 +14,7 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager()
 
 login_manager.login_view = 'auth.login'
-login.manager.init_app(app)
+login_manager.init_app(app)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -23,6 +23,16 @@ def load_user(user_id):
 from grocery_app.routes import main
 
 app.register_blueprint(main)
+
+with app.app_context():
+    db.create_all()
+
+# Blueprints
+from grocery_app.routes import main
+app.register_blueprint(main)
+
+from grocery_app.routes import auth
+app.register_blueprint(auth)
 
 with app.app_context():
     db.create_all()
