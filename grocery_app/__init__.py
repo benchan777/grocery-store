@@ -22,13 +22,6 @@ from .models import User
 def load_user(user_id):
     return User.query.get(user_id)
 
-from grocery_app.routes import main
-
-app.register_blueprint(main)
-
-with app.app_context():
-    db.create_all()
-
 # Blueprints
 from grocery_app.routes import main
 app.register_blueprint(main)
